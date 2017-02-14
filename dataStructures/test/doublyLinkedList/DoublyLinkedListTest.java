@@ -7,14 +7,34 @@ import org.junit.Test;
 public class DoublyLinkedListTest {
 
 	@Test
-	public void doublyLinkedListCreateEmptytest() {
+	public void doublyLinkedListCreateEmptyTest() {
 		DoublyLinkedList lList1 = new DoublyLinkedList();
 
 		assertNull("lList1 head should be null.", lList1.getHead());
+		
+		DoublyLinkedListNode lListNode1 = new DoublyLinkedListNode();
+		
+		assertNull("lListnode1 key should be null.", lListNode1.getKey());
+	}
+	
+	@Test
+	public void doublyLinkedListSettersTest() {
+		DoublyLinkedListNode lListnode2 = new DoublyLinkedListNode(23);
+		
+		lListnode2.setValue(567);
+		assertEquals("lListNode2 value should be 567.", new Integer(567), lListnode2.getValue());
+		
+		DoublyLinkedList lListX1 = new DoublyLinkedList();
+		
+		lListX1.setHead(lListnode2);
+		assertEquals("lListX1 head valuse should be 567.", new Integer(567), lListX1.getHead().getValue());
+		
+		lListX1.setTail(lListnode2);
+		assertEquals("lListX1 tail valuse should be 567.", new Integer(567), lListX1.getTail().getValue());
 	}
 
 	@Test
-	public void doublyLinkedListCreateOneElement() {
+	public void doublyLinkedListCreateOneElementTest() {
 		DoublyLinkedList lList2 = new DoublyLinkedList(3);
 
 		assertEquals("lList2 head value should be 3.", new Integer(3), lList2.getHead().getValue());
@@ -154,6 +174,37 @@ public class DoublyLinkedListTest {
 		assertEquals("lList8 find 67 should be 4.", new Integer(4), lList8.find(67));
 		assertEquals("lList8 find 6 should be -1.", new Integer(-1), lList8.find(6));
 
+	}
+	
+	@Test
+	public void insertAfterTest() {
+		DoublyLinkedList lList9 = new DoublyLinkedList();
+		
+		// Empty
+		lList9.insertAfter(2, 26);
+		assertNull("lList9 head should be null.", lList9.getHead());
+		
+		// Last element
+		lList9.add(26);
+		lList9.add(89);
+		
+		lList9.insertAfter(1, 123);
+		assertEquals("lList9 tail key should be 2.", new Integer(2), lList9.getTail().getKey());
+		assertEquals("lList9 tail value should be 123.", new Integer(123), lList9.getTail().getValue());
+		
+		// Random in the middle
+		lList9.add(27);
+		
+		lList9.insertAfter(1, 45);
+		assertEquals("lList9 tail key should be 4.", new Integer(4), lList9.getTail().getKey());
+		assertEquals("lList9 tail previous key should be 3.", new Integer(3), lList9.getTail().getPrevious().getKey());
+		
+		// Before the tail
+		lList9.insertAfter(3, 65);
+		
+		assertEquals("lList9 tail key should be 5.", new Integer(5), lList9.getTail().getKey());
+		assertEquals("lList9 find 65, key should be 4.", new Integer(4), lList9.find(65));
+		
 	}
 
 }
