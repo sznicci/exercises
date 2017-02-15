@@ -48,6 +48,26 @@ public class SinglyLinkedList {
 		}
 	}
 	
+	public void insertAfter(Integer place, Integer element) {
+		SinglyLinkedListNode current = head;
+		Integer count = new Integer(0);
+		
+		if (head == null) {
+			head = new SinglyLinkedListNode(element);
+		} else {
+			while (current != null) {
+				if (count.equals(place)) {
+					SinglyLinkedListNode newItem = new SinglyLinkedListNode(element);
+					
+					newItem.setNext(current.getNext());
+					current.setNext(newItem);
+				}
+				current = current.getNext();
+				count++;
+			}
+		}
+	}
+	
 	public Integer find(Integer element) {
 		SinglyLinkedListNode current = head;
 		Integer count = new Integer(0);

@@ -7,6 +7,31 @@ import org.junit.Test;
 public class SinglyLinkedListTest {
 	
 	@Test
+	public void SinglyLinkedListInsertAfterTest() {
+		// To empty list
+		SinglyLinkedList lList1 = new SinglyLinkedList();
+		
+		lList1.insertAfter(5, 12);
+		assertEquals("lList1 head value should be 12.", new Integer(12), lList1.getHead().getValue());
+		
+		// To a list with one element
+		lList1.insertAfter(0, 45);
+		
+		assertEquals("lList1 head next value should be 45.", new Integer(45), lList1.getHead().getNext().getValue());
+		
+		// To a list with more than one element
+		lList1.add(23);
+		lList1.add(46);
+		
+		lList1.insertAfter(2, 35);
+		assertEquals("lList1 find 35 should be 3.", new Integer(3), lList1.find(35));
+		assertEquals("lList1 find 46 should be 4.", new Integer(4), lList1.find(46));
+		
+		lList1.insertAfter(4, 123);
+		assertEquals("lList1 find 123 should be 5.", new Integer(5), lList1.find(123));
+	}
+	
+	@Test
 	public void SinglyLinkedListFindTest() {
 		// In an empty list
 		SinglyLinkedList lList1 = new SinglyLinkedList();
