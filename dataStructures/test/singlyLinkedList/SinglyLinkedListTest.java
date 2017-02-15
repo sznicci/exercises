@@ -122,12 +122,12 @@ public class SinglyLinkedListTest {
 
 	@Test
 	public void SinglyLinkedListNodeCreateTest() {
-		SinglyLinkedListNode lList1 = new SinglyLinkedListNode();
+		LinkedListNode lList1 = new LinkedListNode();
 		
 		assertNull("lList1 value should be null.", lList1.getValue());
 		assertNull("lList1 next should be null.", lList1.getNext());
 		
-		SinglyLinkedListNode lList2 = new SinglyLinkedListNode(26);
+		LinkedListNode lList2 = new LinkedListNode(26);
 		
 		assertEquals("lList2 value should be 26.", new Integer(26), lList2.getValue());
 		assertNull("lList2 next should be null.", lList2.getNext());
@@ -138,7 +138,7 @@ public class SinglyLinkedListTest {
 	}
 	
 	@Test
-	public void SinglyLinkedListCreateTest() {
+	public void singlyLinkedListCreateTest() {
 		SinglyLinkedList lList1 = new SinglyLinkedList();
 		
 		assertNull("lList1 head should be null.", lList1.getHead());
@@ -148,7 +148,7 @@ public class SinglyLinkedListTest {
 		assertEquals("lList2 head value should be 15.", new Integer(15), lList2.getHead().getValue());
 		assertNull("lList2 head next should be null.", lList2.getHead().getNext());
 		
-		lList2.setHead(new SinglyLinkedListNode(52));
+		lList2.setHead(new LinkedListNode(52));
 		
 		assertEquals("lList2 head value should be 52.", new Integer(52), lList2.getHead().getValue());
 	}

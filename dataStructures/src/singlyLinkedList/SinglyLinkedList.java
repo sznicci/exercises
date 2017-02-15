@@ -2,19 +2,19 @@ package singlyLinkedList;
 
 public class SinglyLinkedList {
 
-	private SinglyLinkedListNode head;
+	private LinkedListNode head;
 	
 	public SinglyLinkedList() {
 		head = null;
 	}
 	
 	public SinglyLinkedList(Integer newElement) {
-		head = new SinglyLinkedListNode(newElement);
+		head = new LinkedListNode(newElement);
 	}
 	
 	public void add(Integer newElement) {
-		SinglyLinkedListNode newItem = new SinglyLinkedListNode(newElement);
-		SinglyLinkedListNode current = head;
+		LinkedListNode newItem = new LinkedListNode(newElement);
+		LinkedListNode current = head;
 		
 		if (head == null) {
 			head = newItem;
@@ -32,7 +32,7 @@ public class SinglyLinkedList {
 	}
 	
 	public void remove() {
-		SinglyLinkedListNode current = head;
+		LinkedListNode current = head;
 		
 		if (head == null) {
 			return;
@@ -49,15 +49,15 @@ public class SinglyLinkedList {
 	}
 	
 	public void insertAfter(Integer place, Integer element) {
-		SinglyLinkedListNode current = head;
+		LinkedListNode current = head;
 		Integer count = new Integer(0);
 		
 		if (head == null) {
-			head = new SinglyLinkedListNode(element);
+			head = new LinkedListNode(element);
 		} else {
 			while (current != null) {
 				if (count.equals(place)) {
-					SinglyLinkedListNode newItem = new SinglyLinkedListNode(element);
+					LinkedListNode newItem = new LinkedListNode(element);
 					
 					newItem.setNext(current.getNext());
 					current.setNext(newItem);
@@ -69,7 +69,7 @@ public class SinglyLinkedList {
 	}
 	
 	public Integer find(Integer element) {
-		SinglyLinkedListNode current = head;
+		LinkedListNode current = head;
 		Integer count = new Integer(0);
 		
 		if (head == null) {
@@ -86,8 +86,8 @@ public class SinglyLinkedList {
 		}
 	}
 	
-	public SinglyLinkedListNode getLastElement() {
-		SinglyLinkedListNode current = head;
+	public LinkedListNode getLastElement() {
+		LinkedListNode current = head;
 		
 		if (head == null || head.getNext() == null) {
 			return head;
@@ -102,11 +102,11 @@ public class SinglyLinkedList {
 		}
 	}
 
-	public SinglyLinkedListNode getHead() {
+	public LinkedListNode getHead() {
 		return head;
 	}
 
-	public void setHead(SinglyLinkedListNode head) {
+	public void setHead(LinkedListNode head) {
 		this.head = head;
 	}
 
