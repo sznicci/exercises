@@ -26,6 +26,13 @@ public class SinglyLinkedList {
 		}
 		current.setNext(newItem);
 	}
+	
+	public void addAsFirst(Integer newElement) {
+		LinkedListNode newItem = new LinkedListNode(newElement);
+		
+		newItem.setNext(head);
+		head = newItem;
+	}
 
 	public void remove() {
 		LinkedListNode current = head;
@@ -42,6 +49,14 @@ public class SinglyLinkedList {
 		}
 		current.setNext(null);
 
+	}
+	
+	public void removeFirst() {
+		if (head == null) {
+			return;
+		}
+		
+		head = head.getNext();
 	}
 
 	public void insertAfter(Integer place, Integer element) {
