@@ -36,6 +36,26 @@ public class CircularLinkedList {
 		newItem.setNext(current.getNext());
 		current.setNext(newItem);
 	}
+	
+	public void addAsFirst(Integer newElement) {
+		LinkedListNode newItem = new LinkedListNode(newElement);
+		LinkedListNode current = head;
+		
+		if (head == null) {
+			head = newItem;
+			newItem.setNext(head);
+			return;
+		}
+
+		newItem.setNext(head);
+		
+		while (current.getNext() != head) {
+			current = current.getNext();
+		}
+		
+		head = newItem;
+		current.setNext(newItem);
+	}
 
 	public void insertAfter(Integer place, Integer newElement) {
 		LinkedListNode current = head;
@@ -81,6 +101,24 @@ public class CircularLinkedList {
 			current = current.getNext();
 		}
 		current.setNext(head);
+	}
+	
+	public void removeFirst() {
+		LinkedListNode current = head;
+		
+		if (head == null) {
+			return;
+		} else if (head.getNext() == head) {
+			head = null;
+			return;
+		}
+		
+		while (current.getNext() != head) {
+			current = current.getNext();
+		}
+		
+		current.setNext(head.getNext());
+		head = head.getNext();
 	}
 
 	public Integer find(Integer element) {

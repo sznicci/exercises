@@ -9,6 +9,54 @@ import singlyLinkedList.LinkedListNode;
 public class CircularLinkedListTest {
 	
 	@Test
+	public void circularLinkedListRemoveFirstTest() {
+		// From an empty list
+		CircularLinkedList cList1 = new CircularLinkedList();
+		
+		cList1.removeFirst();
+		assertNull("cList1 head should be null.", cList1.getHead());
+		
+		// From a list with one element
+		cList1.add(15);
+		
+		cList1.removeFirst();
+		assertNull("cList1 head should be null.", cList1.getHead());
+		
+		// From a list with more than one element
+		cList1.add(28);
+		cList1.add(45);
+		cList1.add(78);
+		
+		cList1.removeFirst();
+		assertEquals("cList1 head value should be 45.", new Integer(45), cList1.getHead().getValue());
+		assertEquals("cList1 lastElement value should be 78.", new Integer(78), cList1.getLastElement().getValue());
+	}
+	
+	@Test
+	public void circularLinkedListAddAsFirstTest() {
+		// To an empty list
+		CircularLinkedList cList1 = new CircularLinkedList();
+		
+		cList1.addAsFirst(13);
+		assertEquals("cList1 head value should be 13.", new Integer(13), cList1.getHead().getValue());
+		assertEquals("cList1 head next value should be 13.", new Integer(13), cList1.getHead().getNext().getValue());
+		
+		// To a list with one element
+		cList1.addAsFirst(16);
+		assertEquals("cList1 head value should be 16.", new Integer(16), cList1.getHead().getValue());
+		assertEquals("cList1 head next value should be 13.", new Integer(13), cList1.getHead().getNext().getValue());
+		assertEquals("cList1 head next next value should be 16.", new Integer(16), cList1.getHead().getNext().getNext().getValue());
+		
+		// To a list with more than one element
+		cList1.addAsFirst(28);
+		assertEquals("cList1 head value should be 28.", new Integer(28),cList1.getHead().getValue());
+		
+		cList1.addAsFirst(46);
+		assertEquals("cList1 head value should be 46.", new Integer(46),cList1.getHead().getValue());
+		assertEquals("cList1 lastElement value should be 13.", new Integer(13), cList1.getLastElement().getValue());
+	}
+	
+	@Test
 	public void circularLinkedListFindTest() {
 		// In an empty list
 		CircularLinkedList cList1 = new CircularLinkedList();
