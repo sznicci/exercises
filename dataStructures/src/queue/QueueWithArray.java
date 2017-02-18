@@ -21,6 +21,10 @@ public class QueueWithArray {
 		if (array == null) {
 			array = new Integer[MAX_SIZE];
 		}
+    
+		if (top + 1 == MAX_SIZE) {
+			MAX_SIZE *= 2;
+		}
 		
 		if (top > -1) {
 			for (int i = top; i >= 0; i--) {
