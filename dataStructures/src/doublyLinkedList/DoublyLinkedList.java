@@ -21,19 +21,32 @@ public class DoublyLinkedList {
 		if (head == null) {
 			head = newItem;
 			tail = head;
-		} else {
-			newItem.setKey(tail.getKey() + 1);
-			tail.setNext(newItem);
-			newItem.setPrevious(tail);
-			tail = newItem;
-
+			return;
 		}
+
+		newItem.setKey(tail.getKey() + 1);
+		tail.setNext(newItem);
+		newItem.setPrevious(tail);
+		tail = newItem;
+	}
+	
+	public void addAsFirst(Integer newElement) {
+		DoublyLinkedListNode newItem = new DoublyLinkedListNode(newElement);
+		
+		if (head == null) {
+			add(newElement);
+			return;
+		}
+				
+		newItem.setNext(head);
+		head.setPrevious(newItem);
+		head = newItem;
 	}
 
 	public void insertAfter(Integer key, Integer newElement) {
 		DoublyLinkedListNode current = head;
 		DoublyLinkedListNode newItem = new DoublyLinkedListNode(newElement);
-		
+
 		if (current == null) {
 			return;
 		} else if (tail.getKey().equals(key)) {
@@ -41,36 +54,42 @@ public class DoublyLinkedList {
 			tail.setNext(newItem);
 			newItem.setPrevious(tail);
 			tail = newItem;
-		} else {
-			while (current != null) {
-				if (current.getKey().equals(key)) {
-					newItem.setKey(current.getKey() + 1);
-					current.getNext().setPrevious(newItem);
-					newItem.setNext(current.getNext());
-					current.setNext(newItem);
-					newItem.setPrevious(current);
-					
-					DoublyLinkedListNode currentForKeysUpdate = newItem.getNext();
-					while (currentForKeysUpdate != null) {
-						currentForKeysUpdate.setKey(currentForKeysUpdate.getKey() + 1);
-						currentForKeysUpdate = currentForKeysUpdate.getNext();
-					}
-				}
-				current = current.getNext();
-			}
+			return;
 		}
+		while (!current.getKey().equals(key)) {
+			current = current.getNext();
+		}
+
+		newItem.setKey(current.getKey() + 1);
+		current.getNext().setPrevious(newItem);
+		newItem.setNext(current.getNext());
+		current.setNext(newItem);
+		newItem.setPrevious(current);
+
+		DoublyLinkedListNode currentForKeysUpdate = newItem.getNext();
+		while (currentForKeysUpdate != null) {
+			currentForKeysUpdate.setKey(currentForKeysUpdate.getKey() + 1);
+			currentForKeysUpdate = currentForKeysUpdate.getNext();
+		}
+
 	}
 
-	public void removeLast() {
+	public Integer removeLast() {
 		if (head == null) {
-			return;
+			return null;
 		} else if (head == tail) {
+			Integer removeItem = tail.getValue();
 			head = null;
 			tail = null;
-		} else {
-			tail = tail.getPrevious();
-			tail.setNext(null);
+			return removeItem;
 		}
+
+		Integer removeItem = tail.getValue();
+
+		tail = tail.getPrevious();
+		tail.setNext(null);
+
+		return removeItem;
 	}
 
 	public Integer find(Integer element) {
@@ -78,15 +97,16 @@ public class DoublyLinkedList {
 
 		if (current == null) {
 			return -1;
-		} else {
-			while (current != null) {
-				if (current.getValue().equals(element)) {
-					return current.getKey();
-				}
-				current = current.getNext();
-			}
-			return -1;
 		}
+
+		while (!current.getValue().equals(element)) {
+			if (current == tail) {
+				return -1;
+			}
+			current = current.getNext();
+		}
+
+		return current.getKey();
 	}
 
 	public DoublyLinkedListNode getHead() {
