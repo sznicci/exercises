@@ -15,12 +15,12 @@ public class StackWithLinkedList {
 	}
 	
 	public void push(Integer newElement) {
-		if (list == null || list.getHead() == null) {
+		if (list == null) {
 			list = new SinglyLinkedList(newElement);
 			return;
 		}
 		
-		list.add(newElement);
+		list.addAsFirst(newElement);
 	}
 	
 	public Integer peek() {
@@ -28,7 +28,7 @@ public class StackWithLinkedList {
 			return null;
 		}
 		
-		return list.getLastElement().getValue();
+		return list.getHead().getValue();
 	}
 	
 	public Integer pop() {
@@ -36,19 +36,11 @@ public class StackWithLinkedList {
 			return null;
 		}
 		
-		Integer popItem = list.getLastElement().getValue();
+		Integer popItem = peek();
 		
-		list.remove();
+		list.removeFirst();
 		
 		return popItem;
-	}
-
-	public SinglyLinkedList getList() {
-		return list;
-	}
-
-	public void setList(SinglyLinkedList list) {
-		this.list = list;
 	}
 
 }
