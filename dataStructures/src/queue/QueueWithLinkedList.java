@@ -20,7 +20,7 @@ public class QueueWithLinkedList {
 			return;
 		}
 		
-		list.add(newElement);
+		list.addAsFirst(newElement);
 	}
 	
 	public Integer dequeue() {
@@ -37,6 +37,14 @@ public class QueueWithLinkedList {
 		}
 		
 		return list.getTail().getValue();
+	}
+	
+	public Integer getFirst() {
+		if (list == null) {
+			return null;
+		}
+		
+		return list.getHead().getValue();
 	}
 
 	public DoublyLinkedList getList() {
