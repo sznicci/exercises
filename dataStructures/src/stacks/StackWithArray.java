@@ -27,7 +27,7 @@ public class StackWithArray {
 	
 	public void push(Integer newElement) {
 		if (top + 1 == MAX_SIZE) {
-			MAX_SIZE *= 2;
+			array = reSize();
 		} else if (array == null) {
 			array = new Integer[MAX_SIZE];
 			top = -1;
@@ -47,6 +47,17 @@ public class StackWithArray {
 		top--;
 		
 		return popItem;
+	}
+	
+	public Integer[] reSize() {
+		MAX_SIZE *= 2;
+		Integer[] newArray = new Integer[MAX_SIZE];
+		
+		for (int i = 0; i < top + 1; i++) {
+			newArray[i] = array[i];
+		}
+		
+		return newArray;
 	}
 
 	public int size() {
