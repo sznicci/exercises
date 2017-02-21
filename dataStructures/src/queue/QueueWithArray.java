@@ -23,7 +23,7 @@ public class QueueWithArray {
 		}
 		
 		if (top + 1 == MAX_SIZE) {
-			MAX_SIZE *= 2;
+			array = reSize();
 		}
 		
 		if (top > -1) {
@@ -53,6 +53,17 @@ public class QueueWithArray {
 		return array[top];
 	}
 
+	public Integer[] reSize() {
+		MAX_SIZE *= 2;
+		Integer[] newArray = new Integer[MAX_SIZE];
+		
+		for (int i = 0; i < top + 1; i++) {
+			newArray[i] = array[i];
+		}
+		
+		return newArray;
+	}
+	
 	public Integer[] getArray() {
 		return array;
 	}
