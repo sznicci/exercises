@@ -2,11 +2,16 @@ package heap;
 
 public class Heap {
 
-	private static int MAX_SIZE = 100;
-	private Integer[] array;
-	private int heapSize;
-
+	protected static int MAX_SIZE = 100;
+	protected Integer[] array;
+	protected int heapSize;
+	private boolean isMin;	// if true then the heap is a min-heap.
+	
 	public Heap(Integer[] array) {
+		this(array, false);
+	}
+
+	public Heap(Integer[] array, boolean isMin) {
 		if (array == null) {
 			this.array = new Integer[MAX_SIZE];
 			heapSize = 0;
@@ -45,7 +50,7 @@ public class Heap {
 	}
 
 	public void buildHeap() {
-		for (int i = array[parent(array.length - 1)]; i >= 0; i--) {
+		for (int i = array[parent(heapSize - 1)]; i >= 0; i--) {
 			heapify(i);
 		}
 
@@ -101,6 +106,10 @@ public class Heap {
 
 	public Integer[] getArray() {
 		return array.clone();
+	}
+	
+	public boolean isMin() {
+		return isMin;
 	}
 
 }
