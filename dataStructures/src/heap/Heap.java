@@ -25,13 +25,13 @@ public class Heap {
 	}
 
 	public void heapify(int i) {
-		if (left(i) == null) {
+		if (left(i) == -1) {
 			return;
 		}
 
 		Integer tmp = new Integer(0);
 
-		if (right(i) != null && array[right(i)] > array[i] && array[right(i)] > array[left(i)]) {
+		if (right(i) != -1 && array[right(i)] > array[i] && array[right(i)] > array[left(i)]) {
 			tmp = array[right(i)];
 			array[right(i)] = array[i];
 			array[i] = tmp;
@@ -51,31 +51,31 @@ public class Heap {
 
 	}
 
-	public Integer left(int i) {
+	public int left(int i) {
 		int left = (2 * i) + 1;
 
 		if (heapSize - 1 < left) {
-			return null;
+			return -1;
 		}
 
 		return left;
 	}
 
-	public Integer right(int i) {
+	public int right(int i) {
 		int right = (2 * i) + 2;
 
 		if (heapSize - 1 < right) {
-			return null;
+			return -1;
 		}
 
 		return right;
 	}
 
-	public Integer parent(int i) {
+	public int parent(int i) {
 		int parent = (i - 1) / 2;
 
 		if (i == 0) {
-			return null;
+			return -1;
 		}
 
 		return parent;
