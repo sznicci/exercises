@@ -10,10 +10,17 @@ public class Heap {
 		if (array == null) {
 			this.array = new Integer[MAX_SIZE];
 			heapSize = 0;
+		} else if (array[array.length - 1] != null) {
+			heapSize = array.length;
 		} else {
-			heapSize = array.length - 1;
+			for (int i = 0; i < array.length; i++) {
+				if (array[i] == null) {
+					heapSize = i;
+					break;
+				}
+			}
 		}
-		
+
 		this.array = array;
 	}
 
@@ -23,7 +30,7 @@ public class Heap {
 		}
 
 		Integer tmp = new Integer(0);
-		
+
 		if (right(i) != null && array[right(i)] > array[i] && array[right(i)] > array[left(i)]) {
 			tmp = array[right(i)];
 			array[right(i)] = array[i];
@@ -43,13 +50,13 @@ public class Heap {
 		for (int i = array[parent(array.length - 1)]; i >= 0; i--) {
 			heapify(i);
 		}
-		
+
 	}
 
 	public Integer left(int i) {
 		int left = (2 * i) + 1;
 
-		if (heapSize < left) {
+		if (heapSize - 1 < left) {
 			return null;
 		}
 
@@ -59,7 +66,7 @@ public class Heap {
 	public Integer right(int i) {
 		int right = (2 * i) + 2;
 
-		if (heapSize < right) {
+		if (heapSize - 1 < right) {
 			return null;
 		}
 
@@ -75,14 +82,14 @@ public class Heap {
 
 		return parent;
 	}
-	
+
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
-		
+
 		for (Integer i : array) {
 			sb.append(i + ", ");
 		}
-		
+
 		return sb.toString();
 	}
 

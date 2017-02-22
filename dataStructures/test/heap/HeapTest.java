@@ -9,7 +9,7 @@ public class HeapTest {
 	@Test
 	public void testBuildHeap() {
 		Integer[] arr = {7, 9, 11, 6, 5, 15, 3, 1};
-		Integer[] expectedArr = {15, 11, 9, 7, 6, 5, 3, 1};
+		Integer[] expectedArr = {15, 9, 11, 6, 5, 7, 3, 1};
 		Heap heap = new Heap(arr);
 		
 		heap.buildHeap();
