@@ -27,6 +27,7 @@ public class Heap {
 		}
 
 		this.array = array;
+		this.isMin = isMin;
 	}
 
 	public void heapify(int i) {
@@ -34,7 +35,7 @@ public class Heap {
 			return;
 		}
 
-		Integer tmp = new Integer(0);
+		Integer tmp = null;
 
 		if (right(i) != -1 && array[right(i)] > array[i] && array[right(i)] > array[left(i)]) {
 			tmp = array[right(i)];
@@ -48,10 +49,34 @@ public class Heap {
 			heapify(left(i));
 		}
 	}
+	
+	public void heapifyMin(int i) {
+		if (left(i) == -1) {
+			return;
+		}
+
+		Integer tmp = null;
+
+		if (right(i) != -1 && array[right(i)] < array[i] && array[right(i)] < array[left(i)]) {
+			tmp = array[right(i)];
+			array[right(i)] = array[i];
+			array[i] = tmp;
+			heapify(right(i));
+		} else if (array[left(i)] < array[i]) {
+			tmp = array[left(i)];
+			array[left(i)] = array[i];
+			array[i] = tmp;
+			heapify(left(i));
+		}
+	}
 
 	public void buildHeap() {
 		for (int i = array[parent(heapSize - 1)]; i >= 0; i--) {
-			heapify(i);
+			if (isMin) {
+				heapifyMin(i);
+			} else {
+				heapify(i);
+			}
 		}
 
 	}
