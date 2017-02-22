@@ -24,9 +24,9 @@ public class Heap {
 		this.array = array;
 	}
 
-	public Integer heapify(int i) {
+	public void heapify(int i) {
 		if (left(i) == null) {
-			return array[i];
+			return;
 		}
 
 		Integer tmp = new Integer(0);
@@ -35,15 +35,13 @@ public class Heap {
 			tmp = array[right(i)];
 			array[right(i)] = array[i];
 			array[i] = tmp;
-			return heapify(right(i));
+			heapify(right(i));
 		} else if (array[left(i)] > array[i]) {
 			tmp = array[left(i)];
 			array[left(i)] = array[i];
 			array[i] = tmp;
-			return heapify(left(i));
+			heapify(left(i));
 		}
-
-		return array[i];
 	}
 
 	public void buildHeap() {
