@@ -2,11 +2,13 @@ package heap;
 
 public class Heap {
 
+	private static int MAX_SIZE = 100;
 	private Integer[] array;
 	private int heapSize;
 
 	public Heap(Integer[] array) {
 		if (array == null) {
+			this.array = new Integer[MAX_SIZE];
 			heapSize = 0;
 		} else {
 			heapSize = array.length - 1;
