@@ -2,28 +2,28 @@ package queue;
 
 import doublyLinkedList.*;
 
-public class QueueWithLinkedList {
+public class QueueWithLinkedList<T> {
 	
-	private DoublyLinkedList list;
+	private DoublyLinkedList<T> list;
 	
 	public QueueWithLinkedList() {
 		list = null;
 	}
 	
-	public QueueWithLinkedList(Integer newElement) {
-		list = new DoublyLinkedList(newElement);
+	public QueueWithLinkedList(T newElement) {
+		list = new DoublyLinkedList<T>(newElement);
 	}
 	
-	public void enqueue(Integer newElement) {
+	public void enqueue(T newElement) {
 		if (list == null) {
-			list = new DoublyLinkedList(newElement);
+			list = new DoublyLinkedList<T>(newElement);
 			return;
 		}
 		
 		list.addAsFirst(newElement);
 	}
 	
-	public Integer dequeue() {
+	public T dequeue() {
 		if (list == null) {
 			return null;
 		}
@@ -31,7 +31,7 @@ public class QueueWithLinkedList {
 		return list.removeLast();
 	}
 	
-	public Integer examine() {
+	public T examine() {
 		if (list == null) {
 			return null;
 		}
@@ -39,7 +39,7 @@ public class QueueWithLinkedList {
 		return list.getTail().getValue();
 	}
 	
-	public Integer getFirst() {
+	public T getFirst() {
 		if (list == null) {
 			return null;
 		}
@@ -47,7 +47,7 @@ public class QueueWithLinkedList {
 		return list.getHead().getValue();
 	}
 
-	public DoublyLinkedList getList() {
+	public DoublyLinkedList<T> getList() {
 		return list;
 	}
 	
