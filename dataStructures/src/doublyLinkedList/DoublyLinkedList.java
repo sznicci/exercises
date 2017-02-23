@@ -29,15 +29,15 @@ public class DoublyLinkedList<T> {
 		newItem.setPrevious(tail);
 		tail = newItem;
 	}
-	
+
 	public void addAsFirst(T newElement) {
 		DoublyLinkedListNode<T> newItem = new DoublyLinkedListNode<T>(newElement);
-		
+
 		if (head == null) {
 			add(newElement);
 			return;
 		}
-				
+
 		newItem.setNext(head);
 		head.setPrevious(newItem);
 		head = newItem;
@@ -90,6 +90,58 @@ public class DoublyLinkedList<T> {
 		tail.setNext(null);
 
 		return removeItem;
+	}
+
+	public T remove(T element) {
+		if (find(element) == -1) {
+			return null;
+		}
+
+		DoublyLinkedListNode<T> current = head;
+
+		while (!current.getValue().equals(element)) {
+			current = current.getNext();
+		}
+
+		if (current.equals(head) && head.equals(tail)) {
+			head = null;
+			tail = null;
+		} else if (head.getNext().equals(tail)) {
+			if (current.equals(head)) {
+				tail.setPrevious(null);
+				head = tail;
+				head.setKey(0);
+			} else {
+				head.setNext(null);
+				tail = head;
+				tail.setKey(0);
+			}
+		} else {
+			if (current.equals(head)) {
+				current.getNext().setPrevious(null);
+				head = current.getNext();
+				updateKey(current);
+			} else if (current.equals(tail)) {
+				current.getPrevious().setNext(null);
+				tail = current.getPrevious();
+				updateKey(current);
+			} else {
+				current.getNext().setPrevious(current.getPrevious());
+				current.getPrevious().setNext(current.getNext());
+				updateKey(current);
+			}
+		}
+
+		return current.getValue();
+	}
+	
+	private void updateKey(DoublyLinkedListNode<T> current) {
+		current = current.getNext();
+		
+		while (current != null) {
+			current.setKey(current.getKey() - 1);
+			current = current.getNext();
+		}
 	}
 
 	public Integer find(T element) {

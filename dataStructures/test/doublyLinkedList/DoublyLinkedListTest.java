@@ -8,34 +8,34 @@ public class DoublyLinkedListTest {
 
 	@Test
 	public void doublyLinkedListCreateEmptyTest() {
-		DoublyLinkedList lList1 = new DoublyLinkedList();
+		DoublyLinkedList<Integer> lList1 = new DoublyLinkedList<>();
 
 		assertNull("lList1 head should be null.", lList1.getHead());
-		
-		DoublyLinkedListNode lListNode1 = new DoublyLinkedListNode();
-		
+
+		DoublyLinkedListNode<Integer> lListNode1 = new DoublyLinkedListNode<>();
+
 		assertNull("lListnode1 key should be null.", lListNode1.getKey());
 	}
-	
+
 	@Test
 	public void doublyLinkedListSettersTest() {
-		DoublyLinkedListNode lListnode2 = new DoublyLinkedListNode(23);
-		
+		DoublyLinkedListNode<Integer> lListnode2 = new DoublyLinkedListNode<>(23);
+
 		lListnode2.setValue(567);
 		assertEquals("lListNode2 value should be 567.", new Integer(567), lListnode2.getValue());
-		
-		DoublyLinkedList lListX1 = new DoublyLinkedList();
-		
+
+		DoublyLinkedList<Integer> lListX1 = new DoublyLinkedList<>();
+
 		lListX1.setHead(lListnode2);
 		assertEquals("lListX1 head valuse should be 567.", new Integer(567), lListX1.getHead().getValue());
-		
+
 		lListX1.setTail(lListnode2);
 		assertEquals("lListX1 tail valuse should be 567.", new Integer(567), lListX1.getTail().getValue());
 	}
 
 	@Test
 	public void doublyLinkedListCreateOneElementTest() {
-		DoublyLinkedList lList2 = new DoublyLinkedList(3);
+		DoublyLinkedList<Integer> lList2 = new DoublyLinkedList<>(3);
 
 		assertEquals("lList2 head value should be 3.", new Integer(3), lList2.getHead().getValue());
 		assertEquals("lList2 tail value should be 3.", new Integer(3), lList2.getTail().getValue());
@@ -46,7 +46,7 @@ public class DoublyLinkedListTest {
 
 	@Test
 	public void doublyLinkedListAddToEmptyListTest() {
-		DoublyLinkedList lList3 = new DoublyLinkedList();
+		DoublyLinkedList<Integer> lList3 = new DoublyLinkedList<>();
 
 		lList3.add(5);
 
@@ -56,7 +56,7 @@ public class DoublyLinkedListTest {
 
 	@Test
 	public void doublyLinkedListAddToNotEmptyListTest() {
-		DoublyLinkedList lList4 = new DoublyLinkedList(100);
+		DoublyLinkedList<Integer> lList4 = new DoublyLinkedList<>(100);
 
 		// One element
 		lList4.add(27);
@@ -90,14 +90,14 @@ public class DoublyLinkedListTest {
 
 	@Test
 	public void removeLastFromEmptyListTest() {
-		DoublyLinkedList lList5 = new DoublyLinkedList();
+		DoublyLinkedList<Integer> lList5 = new DoublyLinkedList<>();
 
 		assertNull("lList5 should be null.", lList5.removeLast());
 	}
 
 	@Test
 	public void removeLastFromNotEmptyList() {
-		DoublyLinkedList lList6 = new DoublyLinkedList(100);
+		DoublyLinkedList<Integer> lList6 = new DoublyLinkedList<>(100);
 
 		// One element
 
@@ -140,14 +140,14 @@ public class DoublyLinkedListTest {
 
 	@Test
 	public void findInEmptyList() {
-		DoublyLinkedList lList7 = new DoublyLinkedList();
+		DoublyLinkedList<Integer> lList7 = new DoublyLinkedList<>();
 
 		assertEquals("lList7 find 6 should be -1.", new Integer(-1), lList7.find(6));
 	}
 
 	@Test
 	public void findInNotEmptyList() {
-		DoublyLinkedList lList8 = new DoublyLinkedList(12);
+		DoublyLinkedList<Integer> lList8 = new DoublyLinkedList<>(12);
 
 		// One element
 		assertEquals("lList8 find 12 should be 0.", new Integer(0), lList8.find(12));
@@ -173,70 +173,102 @@ public class DoublyLinkedListTest {
 		assertEquals("lList8 find 6 should be -1.", new Integer(-1), lList8.find(6));
 
 	}
-	
+
 	@Test
 	public void addAsFirstTest() {
-		DoublyLinkedList lList9 = new DoublyLinkedList();
-		
+		DoublyLinkedList<Integer> lList9 = new DoublyLinkedList<>();
+
 		// Empty
 		lList9.addAsFirst(26);
-		
+
 		assertEquals("lList9 head vaule should be 26.", new Integer(26), lList9.getHead().getValue());
-		
+
 		// One element
 		lList9.addAsFirst(45);
-		
+
 		assertEquals("lList9 head value should be 45.", new Integer(45), lList9.getHead().getValue());
 		assertEquals("lList9 tail vaule should be 26.", new Integer(26), lList9.getTail().getValue());
-		
+
 		// Two element
 		lList9.addAsFirst(156);
-		
+
 		assertEquals("lList9 head value should be 156.", new Integer(156), lList9.getHead().getValue());
 		assertEquals("lList9 tail vaule should be 26.", new Integer(26), lList9.getTail().getValue());
-		
+
 		// More than two element
 		lList9.add(16);
 		lList9.add(222);
-		
+
 		lList9.addAsFirst(123);
-		
+
 		assertEquals("lList9 head value should be 123.", new Integer(123), lList9.getHead().getValue());
 		assertEquals("lList9 head next value should be 156.", new Integer(156), lList9.getHead().getNext().getValue());
-		assertEquals("lList9 tail previous vaule should be 16.", new Integer(16), lList9.getTail().getPrevious().getValue());
+		assertEquals("lList9 tail previous vaule should be 16.", new Integer(16),
+				lList9.getTail().getPrevious().getValue());
 		assertEquals("lList9 tail vaule should be 222.", new Integer(222), lList9.getTail().getValue());
-		
+
 	}
-	
+
 	@Test
 	public void insertAfterTest() {
-		DoublyLinkedList lList9 = new DoublyLinkedList();
-		
+		DoublyLinkedList<Integer> lList9 = new DoublyLinkedList<>();
+
 		// Empty
 		lList9.insertAfter(2, 26);
 		assertNull("lList9 head should be null.", lList9.getHead());
-		
+
 		// Last element
 		lList9.add(26);
 		lList9.add(89);
-		
+
 		lList9.insertAfter(1, 123);
 		assertEquals("lList9 tail key should be 2.", new Integer(2), lList9.getTail().getKey());
 		assertEquals("lList9 tail value should be 123.", new Integer(123), lList9.getTail().getValue());
-		
+
 		// Random in the middle
 		lList9.add(27);
-		
+
 		lList9.insertAfter(1, 45);
 		assertEquals("lList9 tail key should be 4.", new Integer(4), lList9.getTail().getKey());
 		assertEquals("lList9 tail previous key should be 3.", new Integer(3), lList9.getTail().getPrevious().getKey());
-		
+
 		// Before the tail
 		lList9.insertAfter(3, 65);
-		
+
 		assertEquals("lList9 tail key should be 5.", new Integer(5), lList9.getTail().getKey());
 		assertEquals("lList9 find 65, key should be 4.", new Integer(4), lList9.find(65));
-		
+
+	}
+
+	@Test
+	public void removeTest() {
+		DoublyLinkedList<Integer> lList9 = new DoublyLinkedList<>();
+
+		// Empty
+		assertNull("lList9 remove 5 should be null.", lList9.remove(5));
+
+		// Last element
+		lList9.add(26);
+		lList9.add(89);
+
+		assertEquals("lList9 remove 26 should be 26.", new Integer(26), lList9.remove(26));
+		assertEquals("lList9 tail value should be 89.", new Integer(89), lList9.getTail().getValue());
+		assertEquals("lList9 tail key should be 0.", new Integer(0), lList9.getTail().getKey());
+
+		// Random in the middle
+		lList9.add(27);
+		lList9.add(26);
+		lList9.add(32);
+
+		assertEquals("lList9 remove 27 should be 27.", new Integer(27), lList9.remove(27));
+		assertEquals("lList9 find 26 should be 1.", new Integer(1), lList9.find(26));
+		assertEquals("lList9 tail key should be 2.", new Integer(2), lList9.getTail().getKey());
+
+		// Before the tail
+
+		assertEquals("lList9 remove 26 should be 26.", new Integer(26), lList9.remove(26));
+		assertEquals("lList9 tail previous value should be 89.", new Integer(89), lList9.getTail().getPrevious().getValue());
+		assertEquals("lList9 tail key should be 1.", new Integer(1), lList9.getTail().getKey());
 	}
 
 }
