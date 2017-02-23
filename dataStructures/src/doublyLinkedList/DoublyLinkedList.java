@@ -1,22 +1,22 @@
 package doublyLinkedList;
 
-public class DoublyLinkedList {
+public class DoublyLinkedList<T> {
 
-	private DoublyLinkedListNode head;
-	private DoublyLinkedListNode tail;
+	private DoublyLinkedListNode<T> head;
+	private DoublyLinkedListNode<T> tail;
 
 	public DoublyLinkedList() {
 		this.head = null;
 		this.tail = null;
 	}
 
-	public DoublyLinkedList(Integer newElement) {
-		this.head = new DoublyLinkedListNode(newElement);
+	public DoublyLinkedList(T newElement) {
+		this.head = new DoublyLinkedListNode<T>(newElement);
 		this.tail = this.head;
 	}
 
-	public void add(Integer newElement) {
-		DoublyLinkedListNode newItem = new DoublyLinkedListNode(newElement);
+	public void add(T newElement) {
+		DoublyLinkedListNode<T> newItem = new DoublyLinkedListNode<T>(newElement);
 
 		if (head == null) {
 			head = newItem;
@@ -30,8 +30,8 @@ public class DoublyLinkedList {
 		tail = newItem;
 	}
 	
-	public void addAsFirst(Integer newElement) {
-		DoublyLinkedListNode newItem = new DoublyLinkedListNode(newElement);
+	public void addAsFirst(T newElement) {
+		DoublyLinkedListNode<T> newItem = new DoublyLinkedListNode<T>(newElement);
 		
 		if (head == null) {
 			add(newElement);
@@ -43,9 +43,9 @@ public class DoublyLinkedList {
 		head = newItem;
 	}
 
-	public void insertAfter(Integer key, Integer newElement) {
-		DoublyLinkedListNode current = head;
-		DoublyLinkedListNode newItem = new DoublyLinkedListNode(newElement);
+	public void insertAfter(Integer key, T newElement) {
+		DoublyLinkedListNode<T> current = head;
+		DoublyLinkedListNode<T> newItem = new DoublyLinkedListNode<T>(newElement);
 
 		if (current == null) {
 			return;
@@ -66,7 +66,7 @@ public class DoublyLinkedList {
 		current.setNext(newItem);
 		newItem.setPrevious(current);
 
-		DoublyLinkedListNode currentForKeysUpdate = newItem.getNext();
+		DoublyLinkedListNode<T> currentForKeysUpdate = newItem.getNext();
 		while (currentForKeysUpdate != null) {
 			currentForKeysUpdate.setKey(currentForKeysUpdate.getKey() + 1);
 			currentForKeysUpdate = currentForKeysUpdate.getNext();
@@ -74,17 +74,17 @@ public class DoublyLinkedList {
 
 	}
 
-	public Integer removeLast() {
+	public T removeLast() {
 		if (head == null) {
 			return null;
 		} else if (head == tail) {
-			Integer removeItem = tail.getValue();
+			T removeItem = tail.getValue();
 			head = null;
 			tail = null;
 			return removeItem;
 		}
 
-		Integer removeItem = tail.getValue();
+		T removeItem = tail.getValue();
 
 		tail = tail.getPrevious();
 		tail.setNext(null);
@@ -92,8 +92,8 @@ public class DoublyLinkedList {
 		return removeItem;
 	}
 
-	public Integer find(Integer element) {
-		DoublyLinkedListNode current = head;
+	public Integer find(T element) {
+		DoublyLinkedListNode<T> current = head;
 
 		if (current == null) {
 			return -1;
@@ -109,19 +109,19 @@ public class DoublyLinkedList {
 		return current.getKey();
 	}
 
-	public DoublyLinkedListNode getHead() {
+	public DoublyLinkedListNode<T> getHead() {
 		return head;
 	}
 
-	public void setHead(DoublyLinkedListNode head) {
+	public void setHead(DoublyLinkedListNode<T> head) {
 		this.head = head;
 	}
 
-	public DoublyLinkedListNode getTail() {
+	public DoublyLinkedListNode<T> getTail() {
 		return tail;
 	}
 
-	public void setTail(DoublyLinkedListNode tail) {
+	public void setTail(DoublyLinkedListNode<T> tail) {
 		this.tail = tail;
 	}
 

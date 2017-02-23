@@ -1,11 +1,11 @@
 package doublyLinkedList;
 
-public class DoublyLinkedListNode {
+public class DoublyLinkedListNode<T> {
 
 	private Integer key;
-	private Integer value;
-	private DoublyLinkedListNode previous;
-	private DoublyLinkedListNode next;
+	private T value;
+	private DoublyLinkedListNode<T> previous;
+	private DoublyLinkedListNode<T> next;
 
 	public DoublyLinkedListNode() {
 		this.key = null;
@@ -14,7 +14,7 @@ public class DoublyLinkedListNode {
 		this.next = null;
 	}
 
-	public DoublyLinkedListNode(Integer newElement) {
+	public DoublyLinkedListNode(T newElement) {
 		this.key = new Integer(0);
 		this.value = newElement;
 		this.previous = null;
@@ -29,27 +29,27 @@ public class DoublyLinkedListNode {
 		this.key = key;
 	}
 
-	public Integer getValue() {
+	public T getValue() {
 		return value;
 	}
 
-	public void setValue(Integer value) {
+	public void setValue(T value) {
 		this.value = value;
 	}
 
-	public DoublyLinkedListNode getPrevious() {
+	public DoublyLinkedListNode<T> getPrevious() {
 		return previous;
 	}
 
-	public void setPrevious(DoublyLinkedListNode previous) {
+	public void setPrevious(DoublyLinkedListNode<T> previous) {
 		this.previous = previous;
 	}
 
-	public DoublyLinkedListNode getNext() {
+	public DoublyLinkedListNode<T> getNext() {
 		return next;
 	}
 
-	public void setNext(DoublyLinkedListNode next) {
+	public void setNext(DoublyLinkedListNode<T> next) {
 		this.next = next;
 	}
 }
