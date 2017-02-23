@@ -57,17 +57,17 @@ public class Heap {
 
 		Integer tmp = null;
 		
-		if (right(i) != -1) {
-			Integer maxOfThree = maxOfThree(parent(i), left(i), right(i));
-			
-			if (isMin) {
-				Integer minOfThree = minOfThree(parent(i), left(i), right(i));
-				
-				if (array[parent(i)].equals(minOfThree)) {
-					return;
-				}
-			}
-		}
+//		if (right(i) != -1) {
+//			Integer maxOfThree = maxOfThree(parent(i), left(i), right(i));
+//			
+//			if (isMin) {
+//				Integer minOfThree = minOfThree(parent(i), left(i), right(i));
+//				
+//				if (array[parent(i)].equals(minOfThree)) {
+//					return;
+//				}
+//			}
+//		}
 
 		if (right(i) != -1 && array[right(i)] < array[i] && array[right(i)] < array[left(i)]) {
 			tmp = array[right(i)];
