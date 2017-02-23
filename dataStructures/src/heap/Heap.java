@@ -56,6 +56,18 @@ public class Heap {
 		}
 
 		Integer tmp = null;
+		
+		if (right(i) != -1) {
+			Integer maxOfThree = maxOfThree(parent(i), left(i), right(i));
+			
+			if (isMin) {
+				Integer minOfThree = minOfThree(parent(i), left(i), right(i));
+				
+				if (array[parent(i)].equals(minOfThree)) {
+					return;
+				}
+			}
+		}
 
 		if (right(i) != -1 && array[right(i)] < array[i] && array[right(i)] < array[left(i)]) {
 			tmp = array[right(i)];
@@ -79,6 +91,34 @@ public class Heap {
 			}
 		}
 
+	}
+	
+	public static Integer maxOfThree(Integer a, Integer b, Integer c) {
+		if ((a - b) > 0) {
+			if ((a - c) > 0) {
+				return a;
+			}
+			return c;
+		} else {
+			if ((b - c) > 0) {
+				return b;
+			}
+			return c;
+		}
+	}
+	
+	public static Integer minOfThree(Integer a, Integer b, Integer c) {
+		if ((a - b) < 0) {
+			if ((a - c) < 0) {
+				return a;
+			}
+			return c;
+		} else {
+			if ((b - c) < 0) {
+				return b;
+			}
+			return c;
+		}
 	}
 
 	public int left(int i) {
