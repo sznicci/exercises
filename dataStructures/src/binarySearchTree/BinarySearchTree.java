@@ -14,19 +14,19 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			return;
 		}
 
-		if (root.getLeft() == null && root.getKey().compareTo(newElement) > 0) {
+		if (root.getLeft() == null && root.compareTo(newElement) > 0) {
 			root.setLeft(new BinarySearchTreeNode<T>(newElement));
 			root.getLeft().setParent(root);
 			return;
-		} else if (root.getRight() == null && root.getKey().compareTo(newElement) < 0) {
+		} else if (root.getRight() == null && root.compareTo(newElement) < 0) {
 			root.setRight(new BinarySearchTreeNode<T>(newElement));
 			root.getRight().setParent(root);
 			return;
 		}
 
-		if (root.getKey().compareTo(newElement) > 0) {
+		if (root.compareTo(newElement) > 0) {
 			insert(root.getLeft(), newElement);
-		} else if (root.getKey().compareTo(newElement) < 0) {
+		} else if (root.compareTo(newElement) < 0) {
 			insert(root.getRight(), newElement);
 		}
 	}
@@ -36,9 +36,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			return null;
 		}
 
-		if (root.getKey().compareTo(element) == 0) {
+		if (root.compareTo(element) == 0) {
 			return root;
-		} else if (root.getKey().compareTo(element) > 0) {
+		} else if (root.compareTo(element) > 0) {
 			return search(root.getLeft(), element);
 		} else {
 			return search(root.getRight(), element);
@@ -50,10 +50,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			return null;
 		}
 
-		while (root != null && root.getKey().compareTo(element) != 0) {
+		while (root != null && root.compareTo(element) != 0) {
 			if (root.getKey().compareTo(element) > 0) {
 				root = root.getLeft();
-			} else if (root.getKey().compareTo(element) < 0) {
+			} else if (root.compareTo(element) < 0) {
 				root = root.getRight();
 			}
 		}
@@ -66,14 +66,14 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			return maximum(root.getLeft());
 		}
 
-		BinarySearchTreeNode<T> predesessor = root.getParent();
+		BinarySearchTreeNode<T> predecessor = root.getParent();
 
-		while (predesessor != null && predesessor.getLeft() == root) {
-			root = predesessor;
-			predesessor = predesessor.getParent();
+		while (predecessor != null && predecessor.getLeft() == root) {
+			root = predecessor;
+			predecessor = predecessor.getParent();
 		}
 
-		return predesessor;
+		return predecessor;
 	}
 
 	public BinarySearchTreeNode<T> successor(BinarySearchTreeNode<T> root) {
