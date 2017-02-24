@@ -26,14 +26,14 @@ public class HashTable {
 			list = new DoublyLinkedList<>(newElement);
 			return list;
 		}
-		
+
 		list.addAsFirst(newElement);
 		return list;
 	}
-	
+
 	public String delete(String element) {
 		int hashCodeOfElement = Math.abs(element.hashCode());
-		
+
 		return chainedHashDelete(array[hashCodeOfElement % SIZE], element);
 	}
 
@@ -41,7 +41,7 @@ public class HashTable {
 		if (list != null) {
 			return list.remove(element);
 		}
-		
+
 		return null;
 	}
 
@@ -50,14 +50,12 @@ public class HashTable {
 
 		return chainedHashSearch(array[hashCodeOfElement % SIZE], element);
 	}
-	
+
 	private String chainedHashSearch(DoublyLinkedList<String> list, String element) {
-		if (list != null) {
-			if (list.find(element) > -1) {
-				return element;
-			}
+		if (list != null && list.find(element) > -1) {
+			return element;
 		}
-		
+
 		return null;
 	}
 
