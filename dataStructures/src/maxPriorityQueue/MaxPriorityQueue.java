@@ -16,38 +16,40 @@ public class MaxPriorityQueue extends Heap {
 
 		array[heapSize] = newElement;
 		heapSize++;
-		buildHeap();
+		
+		int i = heapSize - 1; 
+		
+		while (i != 0) {
+			heapify(parent(i));
+			i = parent(i);
+		}
 	}
 
 	public Integer maximum() {
 		return array[0];
 	}
 
-	public void extractMax() {
+	public Integer extractMax() {
 		if (heapSize == 0) {
-			return;
-		} else if (heapSize == 2) {
-			array[0] = array[1];
-		} else if (heapSize == 1) {
-			array[0] = null;
-		} else {
-			array[0] = array[1] >= array[2] ? array[1] : array[2];
-
-			for (int i = array[0] == array[1] ? 1 : 2; i < heapSize - 1; i++) {
-				array[i] = array[i + 1];
-			}
-			
-			array[heapSize - 1] = null;
+			return null;
 		}
+		
+		Integer max = array[0];
+		
+		array[0] = array[heapSize - 1];
+		
+		heapify(0);
 
 		heapSize--;
+		
+		return max;
 	}
 	
 	public void increaseKey(Integer element, Integer amount) {
 		for (int i = 0; i < heapSize; i++) {
 			if (array[i].equals(element)) {
 				array[i] = element + amount;
-				buildHeap();
+				heapify(parent(i));
 			}
 		}
 	}
