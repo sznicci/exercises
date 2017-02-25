@@ -106,25 +106,19 @@ public class DoublyLinkedList<T> {
 			current = current.getNext();
 		}
 		
-		if (current == head && head == tail) {
-			head = null;
-			tail = null;
-			return current.getValue();
+		if (current == head) {
+			head = current.getNext();
+		} else if (current == tail) {
+			tail = current.getPrevious();
 		}
 		
 		if (current.getNext() != null) {
 			current.getNext().setPrevious(current.getPrevious());
-			if (current == head) {
-				head = current.getNext();
-			}
 			updateKey(current);
 		}
 		
 		if (current.getPrevious() != null) {
 			current.getPrevious().setNext(current.getNext());
-			if (current == tail) {
-				tail = current.getPrevious();
-			}
 		}
 
 		return current.getValue();
