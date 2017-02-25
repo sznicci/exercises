@@ -93,42 +93,37 @@ public class DoublyLinkedList<T> {
 	}
 
 	public T remove(T element) {
-		if (find(element) == -1) {
+		DoublyLinkedListNode<T> current = head;
+		
+		if (current == null) {
 			return null;
 		}
 
-		DoublyLinkedListNode<T> current = head;
-
 		while (!current.getValue().equals(element)) {
+			if (current == tail && !current.getValue().equals(element)) {
+				return null;
+			}
 			current = current.getNext();
 		}
-
-		if (current.equals(head) && head.equals(tail)) {
+		
+		if (current == head && head == tail) {
 			head = null;
 			tail = null;
-		} else if (head.getNext().equals(tail)) {
-			if (current.equals(head)) {
-				tail.setPrevious(null);
-				head = tail;
-				head.setKey(0);
-			} else {
-				head.setNext(null);
-				tail = head;
-				tail.setKey(0);
-			}
-		} else {
-			if (current.equals(head)) {
-				current.getNext().setPrevious(null);
+			return current.getValue();
+		}
+		
+		if (current.getNext() != null) {
+			current.getNext().setPrevious(current.getPrevious());
+			if (current == head) {
 				head = current.getNext();
-				updateKey(current);
-			} else if (current.equals(tail)) {
-				current.getPrevious().setNext(null);
+			}
+			updateKey(current);
+		}
+		
+		if (current.getPrevious() != null) {
+			current.getPrevious().setNext(current.getNext());
+			if (current == tail) {
 				tail = current.getPrevious();
-				updateKey(current);
-			} else {
-				current.getNext().setPrevious(current.getPrevious());
-				current.getPrevious().setNext(current.getNext());
-				updateKey(current);
 			}
 		}
 

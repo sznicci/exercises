@@ -247,15 +247,15 @@ public class DoublyLinkedListTest {
 		// Empty
 		assertNull("lList9 remove 5 should be null.", lList9.remove(5));
 
-		// Last element
+		// One element
 		lList9.add(26);
-		lList9.add(89);
 
 		assertEquals("lList9 remove 26 should be 26.", new Integer(26), lList9.remove(26));
-		assertEquals("lList9 tail value should be 89.", new Integer(89), lList9.getTail().getValue());
-		assertEquals("lList9 tail key should be 0.", new Integer(0), lList9.getTail().getKey());
+//		assertEquals("lList9 tail value should be 89.", new Integer(89), lList9.getTail().getValue());
+		assertNull("lList9 head should be null.", lList9.getHead());
 
 		// Random in the middle
+		lList9.add(89);
 		lList9.add(27);
 		lList9.add(26);
 		lList9.add(32);
@@ -265,10 +265,12 @@ public class DoublyLinkedListTest {
 		assertEquals("lList9 tail key should be 2.", new Integer(2), lList9.getTail().getKey());
 
 		// Before the tail
-
 		assertEquals("lList9 remove 26 should be 26.", new Integer(26), lList9.remove(26));
 		assertEquals("lList9 tail previous value should be 89.", new Integer(89), lList9.getTail().getPrevious().getValue());
 		assertEquals("lList9 tail key should be 1.", new Integer(1), lList9.getTail().getKey());
+		
+		// Remove something that is not in the list
+		assertNull("lList9 remove 26 should be null.", lList9.remove(26));
 	}
 
 }
