@@ -51,7 +51,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		}
 
 		while (root != null && root.compareTo(element) != 0) {
-			if (root.getKey().compareTo(element) > 0) {
+			if (root.compareTo(element) > 0) {
 				root = root.getLeft();
 			} else if (root.compareTo(element) < 0) {
 				root = root.getRight();
