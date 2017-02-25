@@ -8,7 +8,7 @@ public class QueueWithLinkedListTest {
 
 	@Test
 	public void queueWithLinkedListExamineTest() {
-		QueueWithLinkedList q1 = new QueueWithLinkedList();
+		QueueWithLinkedList<Integer> q1 = new QueueWithLinkedList<>();
 
 		assertNull("q1 examine should be null.", q1.examine());
 		
@@ -25,7 +25,7 @@ public class QueueWithLinkedListTest {
 
 	@Test
 	public void queueWithLinkedListDenqueueTest() {
-		QueueWithLinkedList q1 = new QueueWithLinkedList();
+		QueueWithLinkedList<Integer> q1 = new QueueWithLinkedList<>();
 
 		assertNull("q1 dequeue should be null.", q1.dequeue());
 
@@ -40,7 +40,7 @@ public class QueueWithLinkedListTest {
 
 	@Test
 	public void queueWithLinkedListEnqueueTest() {
-		QueueWithLinkedList q1 = new QueueWithLinkedList();
+		QueueWithLinkedList<Integer> q1 = new QueueWithLinkedList<>();
 
 		assertNull("q1 list should be null.", q1.getList());
 
