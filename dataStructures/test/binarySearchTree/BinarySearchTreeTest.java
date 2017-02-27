@@ -5,7 +5,53 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class BinarySearchTreeTest {
-	
+
+	@Test
+	public void testDelete() {
+		BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>(23);
+		bst.insert(bst.getRoot(), 12);
+		bst.insert(bst.getRoot(), 30);
+		bst.insert(bst.getRoot(), 5);
+		bst.insert(bst.getRoot(), 27);
+		bst.insert(bst.getRoot(), 17);
+		bst.insert(bst.getRoot(), 40);
+		bst.insert(bst.getRoot(), 3);
+		bst.insert(bst.getRoot(), 7);
+		bst.insert(bst.getRoot(), 1);
+		bst.insert(bst.getRoot(), 9);
+		bst.insert(bst.getRoot(), 8);
+		bst.insert(bst.getRoot(), 0);
+		bst.insert(bst.getRoot(), 35);
+		bst.insert(bst.getRoot(), 32);
+
+		// 0 child
+		assertEquals("bst delete 17 key should be 17", new Integer(17), bst.delete(bst.getRoot(), 17).getKey());
+		assertNull("bst search 12 left child should be null", bst.search(bst.getRoot(), 12).getRight());
+
+		// left child
+		assertEquals("bst delete 3 key should be 3", new Integer(3), bst.delete(bst.getRoot(), 3).getKey());
+		assertEquals("bst search 5 left key should be 1", new Integer(1),
+				bst.search(bst.getRoot(), 5).getLeft().getKey());
+		assertEquals("bst search 1 left key should be 0", new Integer(0),
+				bst.search(bst.getRoot(), 1).getLeft().getKey());
+
+		// right child
+		assertEquals("bst delete 7 key should be 7", new Integer(7), bst.delete(bst.getRoot(), 7).getKey());
+		assertEquals("bst search 5 right key should be 8", new Integer(8),
+				bst.search(bst.getRoot(), 5).getRight().getKey());
+		assertEquals("bst search 8 right key should be 9", new Integer(9),
+				bst.search(bst.getRoot(), 8).getRight().getKey());
+		assertNull("bst search 9 left should be null", bst.search(bst.getRoot(), 9).getLeft());
+
+		// two children
+		assertEquals("bst delete 30 key should be 30", new Integer(30), bst.delete(bst.getRoot(), 30).getKey());
+		assertEquals("bst search 23 right key should be 32", new Integer(32),
+				bst.search(bst.getRoot(), 23).getRight().getKey());
+		assertEquals("bst search 32 right key should be 40", new Integer(40),
+				bst.search(bst.getRoot(), 32).getRight().getKey());
+		assertNull("bst search 35 left should be null", bst.search(bst.getRoot(), 35).getLeft());
+	}
+
 	@Test
 	public void testInorderToString() {
 		BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>(23);
@@ -15,10 +61,10 @@ public class BinarySearchTreeTest {
 		bst.insert(bst.getRoot(), 27);
 		bst.insert(bst.getRoot(), 17);
 		bst.insert(bst.getRoot(), 40);
-		
+
 		String expected = " 5 12 17 23 27 30 40 ";
-		
-		assertEquals("bst inordeToString sould be `expected`", expected, bst.inorderToString(bst.getRoot()));
+
+		assertEquals("bst inordeToString should be `expected`", expected, bst.inorderToString(bst.getRoot()));
 	}
 
 	@Test

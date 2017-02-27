@@ -91,6 +91,50 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		return successor;
 	}
 
+	public BinarySearchTreeNode<T> delete(BinarySearchTreeNode<T> root, T element) {
+		if (root == null) {
+			return null;
+		}
+
+		if (root.compareTo(element) == 0) {
+
+			if (root.getLeft() == null && root.getRight() == null) {
+				transplant(root, null);
+			} else if (root.getLeft() != null && root.getRight() == null) {
+				transplant(root, root.getLeft());
+
+			} else {
+				BinarySearchTreeNode<T> successor = successor(root);
+				if (successor.getParent() != root) {
+					successor.getParent().setLeft(successor.getLeft());
+				}
+				transplant(root, successor);
+				successor.setRight(root.getRight());
+			}
+
+			return root;
+
+		} else if (root.compareTo(element) > 0) {
+			return delete(root.getLeft(), element);
+		} else {
+			return delete(root.getRight(), element);
+		}
+	}
+
+	private void transplant(BinarySearchTreeNode<T> u, BinarySearchTreeNode<T> v) {
+		if (u.getParent() == null) {
+			this.root = v;
+		} else if (u.getParent().getLeft() == u) {
+			u.getParent().setLeft(v);
+		} else {
+			u.getParent().setRight(v);
+		}
+
+		if (u.getParent() != null && v != null) {
+			v.setParent(u.getParent());
+		}
+	}
+
 	public BinarySearchTreeNode<T> minimum(BinarySearchTreeNode<T> root) {
 		if (root == null) {
 			return null;
@@ -112,10 +156,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	public String inorderToString(BinarySearchTreeNode<T> root) {
 		return ((root.getLeft() != null) ? inorderToString(root.getLeft()) : " ") + root.getKey()
 				+ ((root.getRight() != null) ? inorderToString(root.getRight()) : " ");
-	}
-
-	public String inorderToStringWithWhile(BinarySearchTreeNode<T> root) {
-		return null;
 	}
 
 	public BinarySearchTreeNode<T> getRoot() {
