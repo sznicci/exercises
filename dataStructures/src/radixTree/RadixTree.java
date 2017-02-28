@@ -1,31 +1,14 @@
 package radixTree;
 
-import java.security.InvalidParameterException;
-
 public class RadixTree {
 
-	private static int height = 5;
 	private RadixTreeNode root;
 
 	public RadixTree() {
 		root = new RadixTreeNode();
-		createEmptyTree(root, height);
-	}
-
-	private void createEmptyTree(RadixTreeNode root, int height) {
-		root.setLeft(new RadixTreeNode());
-		root.setRight(new RadixTreeNode());
-		for (int i = height - 1; i >= 0; i--) {
-			createEmptyTree(root.getLeft(), i);
-			createEmptyTree(root.getRight(), i);
-		}
 	}
 
 	public void insert(String newElement) {
-		if (newElement.length() >= height) {
-			throw new InvalidParameterException("Too long parameter. Maximum length can be 4.");
-		}
-		
 		insert(root, newElement);
 	}
 
@@ -42,8 +25,14 @@ public class RadixTree {
 
 		for (int i = 0; i < elementArray.length; i++) {
 			if (elementArray[i] == '0') {
+				if (root.getLeft() == null) {
+					root.setLeft(new RadixTreeNode());
+				}
 				root = root.getLeft();
 			} else if (elementArray[i] == '1') {
+				if (root.getRight() == null) {
+					root.setRight(new RadixTreeNode());
+				}
 				root = root.getRight();
 			}
 		}
@@ -55,10 +44,6 @@ public class RadixTree {
 	}
 
 	private boolean delete(RadixTreeNode root, String element) {
-		if (element.length() >= height) {
-			throw new InvalidParameterException("Too long parameter. Maximum length can be 4.");
-		}
-		
 		root = getNode(root, element);
 		root.setKey(false);
 		
@@ -66,10 +51,6 @@ public class RadixTree {
 	}
 
 	public boolean search(String element) {
-		if (element.length() >= height) {
-			throw new InvalidParameterException("Too long parameter. Maximum length can be 4.");
-		}
-		
 		return search(root, element);
 	}
 
