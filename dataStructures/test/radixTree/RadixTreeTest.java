@@ -2,8 +2,6 @@ package radixTree;
 
 import static org.junit.Assert.*;
 
-import java.security.InvalidParameterException;
-
 import org.junit.Test;
 
 public class RadixTreeTest {
@@ -13,18 +11,13 @@ public class RadixTreeTest {
 		RadixTree rt = new RadixTree();
 
 		rt.insert("00");
+		rt.insert("001");
+		rt.insert("01011");
 		
 		assertTrue(rt.delete("00"));
 		assertFalse(rt.search("00"));
-	}
-
-	@Test(expected = InvalidParameterException.class)
-	public void testInsertAndSearchLongString() {
-		RadixTree rt = new RadixTree();
-
-		rt.insert("10000");
-		rt.search("10000");
-		rt.search("011110");
+		assertTrue(rt.delete("01011"));
+		assertFalse(rt.search("01011"));
 	}
 
 	@Test
@@ -32,12 +25,15 @@ public class RadixTreeTest {
 		RadixTree rt = new RadixTree();
 
 		rt.insert("00");
-//		rt.insert("001");
+		rt.insert("001");
+		rt.insert("01011");
 
-//		assertTrue(rt.search("00"));
+		assertTrue(rt.search("00"));
+		assertTrue(rt.search("01011"));
+		assertFalse(rt.search("0101"));
 		assertFalse(rt.search("01"));
 		assertFalse(rt.search("0"));
-		assertFalse(rt.search("10"));
+		assertFalse(rt.search("100000000"));
 	}
 
 }
