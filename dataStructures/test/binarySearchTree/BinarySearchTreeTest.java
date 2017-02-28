@@ -18,8 +18,9 @@ public class BinarySearchTreeTest {
 		bst.insert(bst.getRoot(), 3);
 		bst.insert(bst.getRoot(), 7);
 		bst.insert(bst.getRoot(), 1);
-		bst.insert(bst.getRoot(), 9);
+		bst.insert(bst.getRoot(), 11);
 		bst.insert(bst.getRoot(), 8);
+		bst.insert(bst.getRoot(), 10);
 		bst.insert(bst.getRoot(), 0);
 		bst.insert(bst.getRoot(), 35);
 		bst.insert(bst.getRoot(), 32);
@@ -39,9 +40,10 @@ public class BinarySearchTreeTest {
 		assertEquals("bst delete 7 key should be 7", new Integer(7), bst.delete(bst.getRoot(), 7).getKey());
 		assertEquals("bst search 5 right key should be 8", new Integer(8),
 				bst.search(bst.getRoot(), 5).getRight().getKey());
-		assertEquals("bst search 8 right key should be 9", new Integer(9),
+		assertEquals("bst search 8 right key should be 11", new Integer(11),
 				bst.search(bst.getRoot(), 8).getRight().getKey());
-		assertNull("bst search 9 left should be null", bst.search(bst.getRoot(), 9).getLeft());
+		assertEquals("bst search 11 left should be 10", new Integer(10),
+				bst.search(bst.getRoot(), 11).getLeft().getKey());
 
 		// two children
 		assertEquals("bst delete 30 key should be 30", new Integer(30), bst.delete(bst.getRoot(), 30).getKey());
@@ -49,6 +51,8 @@ public class BinarySearchTreeTest {
 				bst.search(bst.getRoot(), 23).getRight().getKey());
 		assertEquals("bst search 32 right key should be 40", new Integer(40),
 				bst.search(bst.getRoot(), 32).getRight().getKey());
+		assertEquals("bst search 32 leftt key should be 27", new Integer(27),
+				bst.search(bst.getRoot(), 32).getLeft().getKey());
 		assertNull("bst search 35 left should be null", bst.search(bst.getRoot(), 35).getLeft());
 	}
 

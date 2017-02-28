@@ -106,10 +106,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			} else {
 				BinarySearchTreeNode<T> successor = successor(root);
 				if (successor.getParent() != root) {
-					successor.getParent().setLeft(successor.getLeft());
+					successor.getParent().setLeft(successor.getRight());
 				}
 				transplant(root, successor);
 				successor.setRight(root.getRight());
+				successor.setLeft(root.getLeft());
 			}
 
 			return root;
