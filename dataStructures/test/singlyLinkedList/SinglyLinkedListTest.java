@@ -5,6 +5,20 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class SinglyLinkedListTest {
+	
+	@Test
+	public void singlyLinkedListRemoveElementTest() {
+		SinglyLinkedList lList1 = new SinglyLinkedList();
+		
+		lList1.add(16);
+		lList1.add(45);
+		lList1.add(78);
+		
+		lList1.remove(45);
+		
+		assertNull(lList1.find(45));
+		assertEquals("lList1 16 next valuse should be 78.", new Integer(78), lList1.getHead().getNext().getValue());
+	}
 
 	@Test
 	public void singlyLinkedListRemoveFirstTest() {

@@ -51,6 +51,19 @@ public class SinglyLinkedList {
 
 	}
 	
+	public void remove(Integer element) {
+		LinkedListNode current = head;
+		
+		while (current.getNext().getValue() != element) {
+			if (current.getNext().getValue() != element && current.getNext().getNext() == null) {
+				return;
+			}
+			current = current.getNext();
+		}
+		
+		current.setNext(current.getNext().getNext());
+	}
+	
 	public void removeFirst() {
 		if (head == null) {
 			return;
@@ -109,6 +122,18 @@ public class SinglyLinkedList {
 			current = current.getNext();
 		}
 		return current;
+	}
+	
+	public String listToString() {
+		LinkedListNode current = head;
+		StringBuffer sb = new StringBuffer();
+		
+		while (current != null) {
+			sb.append(current.getValue() + ", ");
+			current = current.getNext();
+		}
+		
+		return sb.toString();
 	}
 
 	public LinkedListNode getHead() {
