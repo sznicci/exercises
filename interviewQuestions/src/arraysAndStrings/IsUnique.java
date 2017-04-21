@@ -4,10 +4,6 @@ import java.util.HashMap;
 
 public class IsUnique {
 	
-	/*
-	 * How about upper-case and lower-case characters? Do they count as unique or not?
-	 */
-	
 	public static boolean isUnique(String str) {
 		HashMap<Character, Boolean> strHashMap = new HashMap<>();
 		
