@@ -7,6 +7,20 @@ import org.junit.Test;
 public class HeapTest {
 	
 	@Test
+	public void testMaxOfThree() {
+		assertEquals(new Integer(8), Heap.maxOfThree(3, 5, 8));
+		assertEquals(new Integer(8), Heap.maxOfThree(5, 8, 3));
+		assertEquals(new Integer(8), Heap.maxOfThree(8, 5, 3));
+	}
+	
+	@Test
+	public void testMinOfThree() {
+		assertEquals(new Integer(3), Heap.minOfThree(3, 5, 8));
+		assertEquals(new Integer(3), Heap.minOfThree(5, 3, 8));
+		assertEquals(new Integer(3), Heap.minOfThree(8, 5, 3));
+	}
+	
+	@Test
 	public void testBuildHeap() {
 		Integer[] arr = {7, 9, 11, 6, 5, 15, 3, 1};
 		Integer[] expectedArr = {15, 9, 11, 6, 5, 7, 3, 1};
